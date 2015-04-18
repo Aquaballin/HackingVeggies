@@ -23,6 +23,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.plus.Plus;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
@@ -105,6 +109,8 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
 
             }
         });
+
+        buildGoogleApiClient();
     }
 
     private void dispatchTakePictureIntent() {
@@ -182,5 +188,13 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         Bitmap rotatedBMP = Bitmap.createBitmap(bmp, 0, 0, w, h, mtx, true);
         BitmapDrawable bmd = new BitmapDrawable(rotatedBMP);
         img.setImageDrawable(bmd);
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
     }
 }
