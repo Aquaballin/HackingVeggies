@@ -5,7 +5,8 @@
     android:weightSum="1"
     android:columnCount="6"
     android:rowCount="11"
-    android:id="@+id/PostGrid">
+    android:id="@+id/PostGrid"
+    android:background="#D3D3D3">
 
     <FrameLayout
         android:layout_column="0"
@@ -32,10 +33,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Username:"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:id="@+id/username"
             android:layout_gravity="left"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textColor="#4c8c4c"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +48,9 @@
             android:layout_gravity="left"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/username"/>
+            android:layout_below="@+id/username"
+            android:textColor="#581830"
+            android:textSize="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +61,9 @@
             android:layout_gravity="left"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/location"/>
+            android:layout_below="@+id/location"
+            android:textColor="#4c8c4c"
+            android:textSize="15dp"/>
 
     </RelativeLayout>
 
@@ -74,8 +80,11 @@
             android:text="Category:"
             android:id="@+id/category"
             android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"/>
+            android:textSize="15dp"
+            android:textColor="#4c8c4c"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +96,8 @@
             android:layout_below="@+id/category"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"/>
+            android:textSize="15dp"
+            android:textColor="#581830"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,7 +109,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/price"
-            android:textSize="20dp"/>
+            android:textSize="15dp"
+            android:textColor="#4c8c4c"/>
 
     </RelativeLayout>
 
@@ -107,8 +118,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="connect to seller"
-        android:layout_column="2"
-        android:layout_row="9">
+        android:layout_column="1"
+        android:layout_row="9"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#581830"
+        android:background="#4c8c4c">
 
     </Button>
 
