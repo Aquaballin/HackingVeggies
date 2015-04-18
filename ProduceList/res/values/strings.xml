@@ -24,4 +24,5 @@
         <item>Fruits</item>
         <item>Dairy</item>
     </string-array>
+    <string name="title_activity_original_post">OriginalPost</string>
 </resources>
