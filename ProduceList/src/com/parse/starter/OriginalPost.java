@@ -7,80 +7,62 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.GetCallback;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 import java.text.DecimalFormat;
-import java.text.ParseException;
 
 
 public class OriginalPost extends Activity {
 
-
-    String title;
-    String uname;
-    String location;
-    String category;
-    String price;
-    ParseFile img;
     String objID;
     private ParseQueryAdapter<PostObject> queryAdapter;
     private ParseQueryAdapter.QueryFactory<PostObject> queryRequirements;
+    ListView listView2;
+
+
+    TextView categoryTextView2, priceTextView2, quantityTextView2, userTextView2, locationTextView2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_page);
 
         objID = getIntent().getExtras().getString("objectID");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("MyClass");
-        query.getInBackground(objID, new GetCallback<ParseObject>() {
+        queryRequirements = new ParseQueryAdapter.QueryFactory<PostObject>() {
             @Override
-            public void done(ParseObject object, com.parse.ParseException e) {
-                if (e == null) {
-                    Toast.makeText(getApplicationContext(), "QUERY", Toast.LENGTH_LONG);
-                    title = object.get("Title").toString();
-                    uname = object.get("Username").toString();
-                    location = object.get("Location").toString();
-                    category = object.get("Category").toString();
-                    price = object.get("Price").toString();
-                    img = object.getParseFile("Picture");
-                    populateFields(title, uname, location, category, price, img);
-
-                } else {
-                    objectRetrievalFailed();
-                }
+            public ParseQuery<PostObject> create() {
+                ParseQuery query = new ParseQuery("PostObject");
+                query.whereMatches("objectId", objID);
+                return query;
             }
+        };
 
-            private void objectRetrievalFailed() {
-                Toast.makeText(getApplicationContext(), "NO ID FOR objID", Toast.LENGTH_LONG);
-            }
-
-
-        });
-        /*
         queryAdapter = new ParseQueryAdapter<PostObject>(this, queryRequirements) {
             @Override
             public View getItemView(final PostObject object, View v, ViewGroup parent) {
                 if (v == null) {
-                    v = View.inflate(getContext(), R.layout.post_page, null);
+                    v = View.inflate(getContext(), R.layout.post_item2, null);
                 }
+                categoryTextView2 = (TextView) v.findViewById(R.id.categoryTextView2);
+                priceTextView2 = (TextView) v.findViewById(R.id.priceTextView2);
+                quantityTextView2 = (TextView) v.findViewById(R.id.quantityTextView2);
+                userTextView2 = (TextView) v.findViewById(R.id.userTextView2);
+                locationTextView2 = (TextView) v.findViewById(R.id.locationTextView2);
 
-                ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon);
+                categoryTextView2.setText(object.getCategory());
+                priceTextView2.setText(String.valueOf(object.getDouble("Price")));
+                quantityTextView2.setText(String.valueOf(object.getInt("Quantity")));
+                userTextView2.setText(object.getUser().toString());
+                locationTextView2.setText("Harrisonburg, VA");
+
+                ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon2);
                 ParseFile imageFile = object.getParseFile("Image");
-                Toast.makeText(getApplicationContext(),
-                        objID, Toast.LENGTH_LONG)
-                        .show();
-                finish();
-
-                TextView username = (TextView) v.findViewById(R.id.username);
-                username.setText(objID);
 
                 if (imageFile != null) {
                     postImage.setParseFile(imageFile);
@@ -89,16 +71,18 @@ public class OriginalPost extends Activity {
                 return v;
             }
         };
-        */
+        listView2 = (ListView) findViewById(R.id.ghettoListView);
+        queryAdapter.setPaginationEnabled(true);
+        queryAdapter.setTextKey("title");
+        queryAdapter.setImageKey("Image");
+        queryAdapter.loadObjects();
+        listView2.setAdapter(queryAdapter);
+        queryAdapter.loadObjects();
+
+
 
 
     }
-
-        private void populateFields(String title, String uname, String location, String category, String price, ParseFile img){
-        TextView username = (TextView) findViewById(R.id.username);
-        username.setText(uname);
-    }
-
 
 
     @Override
