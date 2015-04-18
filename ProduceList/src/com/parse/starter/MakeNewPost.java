@@ -123,7 +123,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
                 newPost.put("Quantity",quantity);
                 newPost.put("Description", descriptionText);
                 if (mLastLocation != null) {
-                    newPost.put("Location", mLastLocation);
+                    newPost.put("location", geoPointFromLocation(mLastLocation));
                 }
                 if (picture != null) {
                     newPost.put("Picture", picture);
@@ -261,5 +261,9 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         Bitmap rotatedBMP = Bitmap.createBitmap(bmp, 0, 0, w, h, mtx, true);
         BitmapDrawable bmd = new BitmapDrawable(rotatedBMP);
         img.setImageDrawable(bmd);
+    }
+
+    private ParseGeoPoint geoPointFromLocation(Location loc) {
+        return new ParseGeoPoint(loc.getLatitude(), loc.getLongitude());
     }
 }
