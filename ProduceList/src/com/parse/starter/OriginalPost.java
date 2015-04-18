@@ -55,7 +55,7 @@ public class OriginalPost extends Activity {
                 userTextView2 = (TextView) v.findViewById(R.id.userTextView2);
                 locationTextView2 = (TextView) v.findViewById(R.id.locationTextView2);
 
-                categoryTextView2.setText(object.getCategory());
+                categoryTextView2.setText("penis");
                 priceTextView2.setText(String.valueOf(object.getDouble("Price")));
                 quantityTextView2.setText(String.valueOf(object.getInt("Quantity")));
                 userTextView2.setText(object.getUser().toString());
@@ -71,15 +71,6 @@ public class OriginalPost extends Activity {
                 return v;
             }
         };
-        listView2 = (ListView) findViewById(R.id.ghettoListView);
-        queryAdapter.setPaginationEnabled(true);
-        queryAdapter.setTextKey("title");
-        queryAdapter.setImageKey("Image");
-        queryAdapter.loadObjects();
-        listView2.setAdapter(queryAdapter);
-        queryAdapter.loadObjects();
-
-
 
 
     }
