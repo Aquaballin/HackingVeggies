@@ -4,19 +4,57 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
+
+import java.text.DecimalFormat;
 
 
 public class OriginalPost extends Activity {
 
     String objID;
-
-
+    private ParseQueryAdapter<PostObject> queryAdapter;
+    private ParseQueryAdapter.QueryFactory<PostObject> queryRequirements;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_page);
 
         objID = getIntent().getExtras().getString("objectID");
+        queryRequirements = new ParseQueryAdapter.QueryFactory<PostObject>() {
+            @Override
+            public ParseQuery<PostObject> create() {
+                ParseQuery query = new ParseQuery("PostObject");
+                query.whereMatches("objectId", objID);
+                return query;
+            }
+        };
+
+        queryAdapter = new ParseQueryAdapter<PostObject>(this, queryRequirements) {
+            @Override
+            public View getItemView(final PostObject object, View v, ViewGroup parent) {
+                if (v == null) {
+                    v = View.inflate(getContext(), R.layout.post_page, null);
+                }
+
+                ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon);
+                ParseFile imageFile = object.getParseFile("Image");
+
+                if (imageFile != null) {
+                    postImage.setParseFile(imageFile);
+                    postImage.loadInBackground();
+                }
+                return v;
+            }
+        };
+
 
 
     }
