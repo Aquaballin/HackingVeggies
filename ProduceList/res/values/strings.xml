@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">ProduceList</string>
+    <string name="Username">Username</string>
+    <string name="Welcome">Welcome</string>
+    <string name="Email">Email</string>
+    <string name="LogoutBtn">Logout</string>
+    <string name="ptr_pull_to_refresh">Pull to refresh</string>
+    <string name="ptr_release_to_refresh">Release to refresh</string>
+    <string name="ptr_refreshing">Refreshing…</string>
+    <string name="ptr_last_updated">Updated: %1$s</string>
+    <string name="parse_client_key">SU385igXTsKSTcdx1H7BMO0n6kNf6YeZV4XhxpmJ</string>
+    <string name="parse_app_id">lxFtwdxcRgznLjyVjjsUHFlBrEIBFvmG86Dl6uFe</string>
+</resources>
