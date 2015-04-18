@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:columnCount="6"
-    android:rowCount="5"
+    android:rowCount="14"
     android:id="@+id/PostGrid">
 
     <FrameLayout
@@ -102,6 +102,16 @@
             android:textSize="20dp"/>
 
     </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect"
+        android:id="@+id/connect"
+        android:layout_row="10"
+        android:layout_column="2"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp" />
 
 
 </GridLayout>
