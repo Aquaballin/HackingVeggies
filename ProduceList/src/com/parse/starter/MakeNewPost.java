@@ -7,8 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,9 +25,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.FusedLocationProviderApi;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 
@@ -34,7 +44,7 @@ import static com.parse.starter.R.id.img;
 import static com.parse.starter.R.id.postButton;
 
 
-public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedListener {
+public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     PostObject newPost;
     String foodCategory;
@@ -46,16 +56,36 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
     EditText choosePrice;
     EditText chooseQuantity;
     EditText Description;
+    TextView locationview;
     Spinner spinner;
-    String title;
     String userNameToCloud;
     String descriptionText;
+    GoogleApiClient mGoogleApiClient;
+    LocationRequest mLocationRequest;
+    Location mLastLocation;
+    String mLatitudeText;
+    String mLongitudeText;
+    LocationListener mlistener;
+    private TextView mLocationView;
+    private LocationRequest locationRequest;
+    private final String TAG = "Logdata";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        locationview = (TextView) findViewById(R.id.locationview);
         setContentView(R.layout.activity_make_new_post);
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this) // this is a Context
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)  // this is a [GoogleApiClient.ConnectionCallbacks][1]
+                .addOnConnectionFailedListener(this) //
+                .build();
+
+
+
 
         //fruit, veggies, meat
         spinner = (Spinner) findViewById(R.id.categories);
@@ -92,6 +122,9 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
                 newPost.put("Price",price);
                 newPost.put("Quantity",quantity);
                 newPost.put("Description", descriptionText);
+                if (mLastLocation != null) {
+                    newPost.put("Location", mLastLocation);
+                }
                 if (picture != null) {
                     newPost.put("Picture", picture);
                 }
@@ -107,6 +140,51 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client.
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        // Disconnecting the client invalidates it.
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        mlistener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                mLastLocation = location;
+            }
+        };
+
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000); // Update location every second
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, mlistener);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.i(TAG, "GoogleApiClient connection has been suspend");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.i(TAG, "GoogleApiClient connection has failed");
+    }
+
+
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

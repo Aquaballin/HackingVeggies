@@ -81,6 +81,15 @@
         android:textAlignment="viewStart">
         </EditText>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationview"
+        android:text="Location"
+        android:layout_below="@+id/editText2"
+        android:textColor="#4c8c4c">
+    </TextView>
+
 
 
     <TextView
