@@ -25,11 +25,13 @@ import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
 
 import static com.parse.starter.R.id.img;
 import static com.parse.starter.R.id.postButton;
+import static com.parse.starter.R.id.titleEditText;
 
 
 public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedListener {
@@ -43,7 +45,10 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
     Bitmap image;
     EditText choosePrice;
     EditText chooseQuantity;
+    EditText chooseTitle;
     Spinner spinner;
+    String title;
+    String userNameToCloud;
 
 
     @Override
@@ -58,8 +63,11 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
+
         choosePrice = (EditText) findViewById(R.id.editText);
         chooseQuantity = (EditText) findViewById(R.id.editText2);
+        chooseTitle = (EditText) findViewById(R.id.titleEditText);
 
         Button take_picture = (Button) findViewById(R.id.addPicButton);
         take_picture.setOnClickListener(new View.OnClickListener() {
@@ -73,10 +81,14 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         add_post_to_parse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userNameToCloud = ParseUser.getCurrentUser().toString();
+                title = chooseTitle.getText().toString();
                 price = Double.parseDouble(choosePrice.getText().toString());
                 quantity = Integer.parseInt(chooseQuantity.getText().toString());
                 foodCategory = spinner.getSelectedItem().toString();
                 newPost = new PostObject();
+                newPost.put("Username",userNameToCloud);
+                newPost.put("Title",title);
                 newPost.put("Price",price);
                 newPost.put("Quantity",quantity);
                 if (picture != null) {

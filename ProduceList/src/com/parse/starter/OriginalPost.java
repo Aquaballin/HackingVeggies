@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.parse.ParseFile;
@@ -22,6 +23,11 @@ public class OriginalPost extends Activity {
     String objID;
     private ParseQueryAdapter<PostObject> queryAdapter;
     private ParseQueryAdapter.QueryFactory<PostObject> queryRequirements;
+    ListView listView2;
+
+
+    TextView categoryTextView2, priceTextView2, quantityTextView2, userTextView2, locationTextView2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +47,21 @@ public class OriginalPost extends Activity {
             @Override
             public View getItemView(final PostObject object, View v, ViewGroup parent) {
                 if (v == null) {
-                    v = View.inflate(getContext(), R.layout.post_page, null);
+                    v = View.inflate(getContext(), R.layout.post_item2, null);
                 }
+                categoryTextView2 = (TextView) v.findViewById(R.id.categoryTextView2);
+                priceTextView2 = (TextView) v.findViewById(R.id.priceTextView2);
+                quantityTextView2 = (TextView) v.findViewById(R.id.quantityTextView2);
+                userTextView2 = (TextView) v.findViewById(R.id.userTextView2);
+                locationTextView2 = (TextView) v.findViewById(R.id.locationTextView2);
 
-                ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon);
+                categoryTextView2.setText(object.getCategory());
+                priceTextView2.setText(String.valueOf(object.getDouble("Price")));
+                quantityTextView2.setText(String.valueOf(object.getInt("Quantity")));
+                userTextView2.setText(object.getUser().toString());
+                locationTextView2.setText("Harrisonburg, VA");
+
+                ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon2);
                 ParseFile imageFile = object.getParseFile("Image");
 
                 if (imageFile != null) {
@@ -54,6 +71,14 @@ public class OriginalPost extends Activity {
                 return v;
             }
         };
+        listView2 = (ListView) findViewById(R.id.ghettoListView);
+        queryAdapter.setPaginationEnabled(true);
+        queryAdapter.setTextKey("title");
+        queryAdapter.setImageKey("Image");
+        queryAdapter.loadObjects();
+        listView2.setAdapter(queryAdapter);
+        queryAdapter.loadObjects();
+
 
 
 
