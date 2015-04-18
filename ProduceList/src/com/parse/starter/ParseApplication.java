@@ -5,6 +5,7 @@ import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseCrashReporting;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
@@ -14,6 +15,7 @@ public class ParseApplication extends Application {
     super.onCreate();
     ParseCrashReporting.enable(this);
     Parse.enableLocalDatastore(this);
+    ParseObject.registerSubclass(PostObject.class);
     Parse.initialize(this, "lxFtwdxcRgznLjyVjjsUHFlBrEIBFvmG86Dl6uFe", "SU385igXTsKSTcdx1H7BMO0n6kNf6YeZV4XhxpmJ");
     ParseUser.enableAutomaticUser();
     ParseACL defaultACL = new ParseACL();

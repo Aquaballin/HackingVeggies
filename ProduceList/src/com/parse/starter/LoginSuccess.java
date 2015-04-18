@@ -12,6 +12,7 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,7 +59,7 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
         post.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(LoginSuccess.this, MakeNewPost.class));
             }
         });
 

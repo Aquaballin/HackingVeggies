@@ -13,4 +13,14 @@
     <string name="ptr_last_updated">Updated: %1$s</string>
     <string name="parse_client_key">SU385igXTsKSTcdx1H7BMO0n6kNf6YeZV4XhxpmJ</string>
     <string name="parse_app_id">lxFtwdxcRgznLjyVjjsUHFlBrEIBFvmG86Dl6uFe</string>
+    <string name="title_activity_make_new_post">MakeNewPost</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="categories">
+        <item>Meats</item>
+        <item>Vegetables</item>
+        <item>Fruits</item>
+        <item>Dairy</item>
+    </string-array>
 </resources>
