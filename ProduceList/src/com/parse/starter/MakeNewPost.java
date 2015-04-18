@@ -76,7 +76,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
                 }
                 newPost.put("Category",foodCategory);
                 newPost.saveInBackground();
-                
+
             }
         });
     }
