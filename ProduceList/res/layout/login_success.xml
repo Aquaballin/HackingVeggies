@@ -27,9 +27,7 @@
         android:text="@string/LogoutBtn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#4C8C4C"
-        android:textColor="#581830"/>
+        android:layout_alignParentStart="true"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -39,19 +37,18 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/logout"
         android:layout_toEndOf="@+id/logout"
-        android:background="#4C8C4C"
-        android:textColor="#581830"/>
+   />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Profile"
         android:id="@+id/profileButton"
+        android:text="My Profile"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/postButton"
         android:layout_toEndOf="@+id/postButton"
-        android:background="#4C8C4C"
-        android:textColor="#581830"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
 
 
 </RelativeLayout>
