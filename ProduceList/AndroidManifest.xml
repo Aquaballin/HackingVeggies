@@ -23,7 +23,7 @@
     <application
         android:name=".ParseApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/root"
         android:label="@string/app_name" >
         <meta-data
             android:name="com.parse.APPLICATION_ID"
