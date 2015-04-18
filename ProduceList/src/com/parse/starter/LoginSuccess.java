@@ -95,6 +95,7 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                 if (v == null) {
                     v = View.inflate(getContext(), R.layout.post_item, null);
                 }
+
                 Button originalPostButton = (Button) v.findViewById(R.id.viewPostButton);
                 originalPostButton.setOnClickListener(new OnClickListener() {
                     @Override
@@ -242,5 +243,11 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
             longitude = mLastLocation.getLongitude();
         } else {
         }
+    }
+
+    public void moreInfo(View v)
+    {
+        Intent intent = new Intent(LoginSuccess.this,OriginalPost.class);
+        startActivity(intent);
     }
 }
