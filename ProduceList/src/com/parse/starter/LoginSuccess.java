@@ -100,7 +100,9 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                 originalPostButton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String id = object.getObjectId().toString();
                         Intent intent = new Intent(LoginSuccess.this,OriginalPost.class);
+                        intent.putExtra("objectID", id);
                         startActivity(intent);
                     }
                 });
@@ -245,9 +247,4 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
         }
     }
 
-    public void moreInfo(View v)
-    {
-        Intent intent = new Intent(LoginSuccess.this,OriginalPost.class);
-        startActivity(intent);
-    }
 }
