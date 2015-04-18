@@ -115,6 +115,8 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                 TextView quantityText = (TextView) v.findViewById(R.id.quantityTextView);
                 quantityText.setText("Quantity: " + String.valueOf(object.getInt("Quantity")));
                 TextView priceText = (TextView) v.findViewById(R.id.priceTextView);
+                TextView descriptionbox = (TextView) v.findViewById(R.id.descriptionbox);
+                descriptionbox.setText(String.valueOf(object.getString("Description")));
                 priceText.setText("$" + String.valueOf(object.getDouble("Price")) + " per unit");
                 if (imageFile != null) {
                     postImage.setParseFile(imageFile);
