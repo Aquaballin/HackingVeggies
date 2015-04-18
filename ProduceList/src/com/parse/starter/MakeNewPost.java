@@ -1,8 +1,12 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
@@ -14,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +28,7 @@ import com.parse.ParseGeoPoint;
 
 import java.io.ByteArrayOutputStream;
 
+import static com.parse.starter.R.id.img;
 import static com.parse.starter.R.id.postButton;
 
 
@@ -38,6 +44,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
     EditText choosePrice;
     EditText chooseQuantity;
     Spinner spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
             }
         });
         Button add_post_to_parse = (Button) findViewById(R.id.savePostButton);
+
         add_post_to_parse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +114,16 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
             image_byte_array = stream.toByteArray();
             picture = new ParseFile("Picture", image_byte_array);
             picture.saveInBackground();
+            ImageView img = (ImageView) findViewById(R.id.img);
+            img.setImageBitmap(image);
+            Button rotateButton = (Button) findViewById (R.id.rotateButton);
+
+
+
+
         }
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_make_new_post, menu);
@@ -140,5 +154,21 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void Rotate(View v)
+    {
+        ImageView img = (ImageView)findViewById(R.id.img);
+        Bitmap bmp = image;
+// Getting width & height of the given image.
+        int w = bmp.getWidth();
+        int h = bmp.getHeight();
+// Setting pre rotate to 90
+        Matrix mtx = new Matrix();
+        mtx.preRotate(90);
+// Rotating Bitmap
+        Bitmap rotatedBMP = Bitmap.createBitmap(bmp, 0, 0, w, h, mtx, true);
+        BitmapDrawable bmd = new BitmapDrawable(rotatedBMP);
+        img.setImageDrawable(bmd);
     }
 }
