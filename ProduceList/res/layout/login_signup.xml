@@ -3,48 +3,58 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dip" >
+    android:padding="10dip"
+    android:background="#D3D3D3">
 
     <TextView
         android:id="@+id/txtusername"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Username" />
+        android:text="@string/Username"
+        android:textColor="#4c8c4c"/>
 
    <EditText
         android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtusername"
-        android:inputType="text" />
+        android:inputType="text"
+        android:background="#7E7E7E"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/txtemail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
-        android:text="@string/Email" />
+        android:text="@string/Email"
+        android:textColor="#4c8c4c"/>
 
     <EditText
         android:id="@+id/email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below= "@+id/txtemail"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:background="#7E7E7E"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/txtpassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email"
-        android:text="Password" />
+        android:text="Password"
+        android:textColor="#4c8c4c"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtpassword"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="#7E7E7E"
+        android:textColor="#FFFFFF"/>
 
     <Button
         android:id="@+id/login"
