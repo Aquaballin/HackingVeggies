@@ -13,24 +13,36 @@
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:id="@+id/img"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp"
+        android:elevation="2dp"
+        android:focusableInTouchMode="true"
+        android:background="#aa27ae60">
 
         </ImageView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/img"
         android:text="Rotate Pic"
         android:textSize="12dp"
         android:id="@+id/rotateButton"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
-        android:onClick="Rotate">
-        />
+        android:onClick="Rotate"
+        android:layout_alignBottom="@+id/img"
+        android:layout_toRightOf="@+id/addPicButton"
+        android:layout_toEndOf="@+id/addPicButton"
+        android:elevation="5dp"
+        android:gravity="right|bottom"
+        >
     </Button>
-
-
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Pic"
+        android:id="@+id/addPicButton"
+        android:layout_alignTop="@+id/rotateButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:elevation="5dp"
+        android:gravity="right|bottom"/>
 
 
     <TextView android:text="CHOOSE CATEGORY" android:layout_width="wrap_content"
@@ -38,17 +50,38 @@
         android:id="@+id/textView2"
         android:textStyle="bold"
         android:layout_below="@id/img"
-        android:textColor="#4c8c4c"/>
+        android:textColor="#4c8c4c"
+        android:elevation="3dp" />
 
 
 
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
         android:id="@+id/categories"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:elevation="2dp"
+        android:clickable="true"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/categories"
+        android:id="@+id/Description"
+        android:hint="Enter description"
+        android:textColorHint="#FFFFFF"
+        android:background="#aa27ae60"
+        android:layout_margin="0dp"
+        android:elevation="5dp"
+        android:gravity="start"
+        android:textAlignment="viewStart">
+        </EditText>
+
+
 
     <TextView
         android:textColor="#4c8c4c"
@@ -57,7 +90,7 @@
         android:text="CHOOSE PRICE"
         android:textStyle="bold"
         android:id="@+id/textView3"
-        android:layout_below="@+id/categories"
+        android:layout_below="@+id/Description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -96,26 +129,16 @@
         android:background="#7E7E7E"
         android:textColor="#FFFFFF"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Pic"
-        android:id="@+id/addPicButton"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Post"
         android:id="@+id/savePostButton"
-        android:layout_below="@+id/addPicButton"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/editText2"
+        android:layout_toRightOf="@+id/editText2"
+        android:layout_toEndOf="@+id/editText2" />
+
 
 
 
