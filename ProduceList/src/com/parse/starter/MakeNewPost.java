@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -36,6 +37,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
     Bitmap image;
     EditText choosePrice;
     EditText chooseQuantity;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         setContentView(R.layout.activity_make_new_post);
 
         //fruit, veggies, meat
-        Spinner spinner = (Spinner) findViewById(R.id.categories);
+        spinner = (Spinner) findViewById(R.id.categories);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -65,6 +67,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
             public void onClick(View v) {
                 price = Double.parseDouble(choosePrice.getText().toString());
                 quantity = Integer.parseInt(chooseQuantity.getText().toString());
+                foodCategory = spinner.getSelectedItem().toString();
                 newPost = new PostObject();
                 newPost.put("Price",price);
                 newPost.put("Quantity",quantity);
@@ -76,6 +79,9 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
                 }
                 newPost.put("Category",foodCategory);
                 newPost.saveInBackground();
+                Toast.makeText(getBaseContext(),"POST CREATED",
+                        Toast.LENGTH_LONG).show();
+                finish();
 
             }
         });

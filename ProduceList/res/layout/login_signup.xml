@@ -51,13 +51,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:text="LoginButton" />
+        android:text="Login" />
 
     <Button
         android:id="@+id/signup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
-        android:text="SignupButton" />
+        android:text="Signup" />
 
 </RelativeLayout>
