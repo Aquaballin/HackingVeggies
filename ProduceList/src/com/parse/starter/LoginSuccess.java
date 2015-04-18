@@ -78,17 +78,13 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
             buildGoogleApiClient();
         }
 
-        Toast.makeText(getApplicationContext(), "LOCATION UPDATE (0, 0) ... REFRESH LISTVIEW", Toast.LENGTH_LONG).show();
 
         queryRequirements = new ParseQueryAdapter.QueryFactory<PostObject>() {
             @Override
             public ParseQuery<PostObject> create() {
                 ParseQuery query = new ParseQuery("PostObject");
                 query.orderByDescending("createdAt");
-                query.whereWithinKilometers("Location",
-                        new ParseGeoPoint(latitude,
-                                longitude), RANGE);
-                query.setLimit(75);
+
                 return query;
             }
         };
@@ -100,12 +96,8 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                     v = View.inflate(getContext(), R.layout.post_item, null);
                 }
                 ParseImageView postImage = (ParseImageView) v.findViewById(R.id.icon);
-                ParseFile imageFile = object.getParseFile("Image");
-                TextView tv = (TextView) v.findViewById(R.id.textView);
-                DecimalFormat df = new DecimalFormat("##");
-                tv.setText(formatTheDateString(object.getCreatedAt().toString())
-                        + ", " + df.format(new ParseGeoPoint(latitude,longitude).distanceInMilesTo(object.getParseGeoPoint("Location")))
-                        + " miles away.");
+                ParseFile imageFile = object.getParseFile("Picture");
+
                 if (imageFile != null) {
                     postImage.setParseFile(imageFile);
                     postImage.loadInBackground();
