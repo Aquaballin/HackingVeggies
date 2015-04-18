@@ -1,6 +1,7 @@
 package com.parse.starter;
 
 import com.parse.ParseClassName;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
 /**
@@ -40,6 +41,11 @@ public class User extends ParseObject {
     {
         put("phoneNumber", phoneNumber);
     }
+
+    private String getLocation() { return getString("location");}
+
+    private void setLocation(ParseGeoPoint location) {put ("location", location); }
+
 
     private int getRating()
     {

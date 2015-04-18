@@ -23,6 +23,8 @@ import java.util.List;
 public class ProfileActivity extends Activity {
     ImageView profile;
     String usernametxt;
+    String emailtxt;
+    String phonetxt;
     TextView username;
     String locationtxt;
     ParseFile profilepic;
@@ -35,6 +37,7 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.profile);
         ParseUser currentUser = ParseUser.getCurrentUser();
         usernametxt = currentUser.getUsername().toString();
+
         username = (TextView) findViewById(R.id.username);
         username.setText(usernametxt);
 
