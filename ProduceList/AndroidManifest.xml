@@ -49,7 +49,11 @@
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_ProfileView">
+            android:label="@string/title_activity_ProfileView" >
+        </activity>
+        <activity
+            android:name=".OriginalPost"
+            android:label="@string/title_activity_original_post" >
         </activity>
     </application>
 

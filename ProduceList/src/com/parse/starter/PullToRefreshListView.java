@@ -230,6 +230,7 @@ public class PullToRefreshListView extends ListView{
         text = (TextView) header.findViewById(R.id.ptr_id_text);
         lastUpdatedTextView = (TextView) header.findViewById(R.id.ptr_id_last_updated);
         image = (ImageView) header.findViewById(R.id.ptr_id_image);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         spinner = (ProgressBar) header.findViewById(R.id.ptr_id_spinner);
 
@@ -374,6 +375,7 @@ public class PullToRefreshListView extends ListView{
     private void setUiRefreshing(){
         spinner.setVisibility(View.VISIBLE);
         image.clearAnimation();
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         image.setVisibility(View.INVISIBLE);
         text.setText(refreshingText);
     }
