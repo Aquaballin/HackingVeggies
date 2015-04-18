@@ -101,6 +101,8 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                     @Override
                     public void onClick(View v) {
                         String id = object.getObjectId().toString();
+
+
                         Intent intent = new Intent(LoginSuccess.this,OriginalPost.class);
                         intent.putExtra("objectID", id);
                         startActivity(intent);
