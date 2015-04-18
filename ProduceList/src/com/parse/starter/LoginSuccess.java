@@ -100,6 +100,8 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(LoginSuccess.this,OriginalPost.class);
+                        intent.putExtra("objectID",object.getObjectId());
+
                         startActivity(intent);
                     }
                 });

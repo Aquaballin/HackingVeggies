@@ -8,10 +8,17 @@ import android.view.MenuItem;
 
 public class OriginalPost extends Activity {
 
+    String objID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_page);
+
+        objID = getIntent().getExtras().getString("objectID");
+
+
     }
 
 
