@@ -47,6 +47,10 @@
             android:name=".MakeNewPost"
             android:label="@string/title_activity_make_new_post" >
         </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_ProfileView">
+        </activity>
     </application>
 
 </manifest>

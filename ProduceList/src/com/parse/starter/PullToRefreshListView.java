@@ -230,6 +230,7 @@ public class PullToRefreshListView extends ListView{
         text = (TextView) header.findViewById(R.id.ptr_id_text);
         lastUpdatedTextView = (TextView) header.findViewById(R.id.ptr_id_last_updated);
         image = (ImageView) header.findViewById(R.id.ptr_id_image);
+
         spinner = (ProgressBar) header.findViewById(R.id.ptr_id_spinner);
 
         pullToRefreshText = getContext().getString(R.string.ptr_pull_to_refresh);

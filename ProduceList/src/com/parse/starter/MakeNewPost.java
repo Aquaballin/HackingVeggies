@@ -50,7 +50,7 @@ public class MakeNewPost extends Activity implements AdapterView.OnItemSelectedL
         spinner.setAdapter(adapter);
 
         choosePrice = (EditText) findViewById(R.id.editText);
-        chooseQuantity = (EditText) findViewById(R.id.editText);
+        chooseQuantity = (EditText) findViewById(R.id.editText2);
 
         Button take_picture = (Button) findViewById(R.id.addPicButton);
         take_picture.setOnClickListener(new View.OnClickListener() {
