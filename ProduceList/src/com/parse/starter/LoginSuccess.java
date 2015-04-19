@@ -12,6 +12,7 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,7 @@ import static com.google.android.gms.common.api.GoogleApiClient.*;
 
 public class LoginSuccess extends Activity implements OnConnectionFailedListener, ConnectionCallbacks {
 
-    Button logout, post;
+    Button logout, post, profile;
     private ParseQueryAdapter<PostObject> queryAdapter;
     private ParseQueryAdapter.QueryFactory<PostObject> queryRequirements;
     private int RANGE = 40;
@@ -51,6 +52,7 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
         txtuser.setText("You are logged in as " + struser);
         logout = (Button) findViewById(R.id.logout);
         post = (Button) findViewById(R.id.postButton);
+        profile = (Button) findViewById(R.id.profileButton);
 
         latitude = 38.4339305;
         longitude = -78.8629357;
@@ -59,6 +61,16 @@ public class LoginSuccess extends Activity implements OnConnectionFailedListener
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        profile.setOnClickListener(new OnClickListener() {
+            @Override
+
+            public void onClick(View v){
+                Intent myIntent = new Intent(LoginSuccess.this, ProfileActivity.class);
+                //myIntent.putExtra("key", hello); //Optional parameters
+                LoginSuccess.this.startActivity(myIntent);
             }
         });
 

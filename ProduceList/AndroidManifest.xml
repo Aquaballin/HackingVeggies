@@ -33,6 +33,7 @@
         </activity>
         <activity android:name=".LoginSignupActivity"/>
         <activity android:name=".LoginSuccess"/>
+        <activity android:name=".ProfileActivity"/>
 
     </application>
 

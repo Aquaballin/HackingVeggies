@@ -37,4 +37,14 @@
         android:layout_toRightOf="@+id/logout"
         android:layout_toEndOf="@+id/logout" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Profile"
+        android:id="@+id/profileButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/postButton"
+        android:layout_toEndOf="@+id/postButton"/>
+
+
 </RelativeLayout>
